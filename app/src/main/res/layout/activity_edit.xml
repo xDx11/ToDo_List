@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorBack"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <include layout="@layout/toolbar"
+            android:id="@+id/toolbar_inc" />
+        <ImageButton
+            android:id="@+id/submit_edit2"
+            android:layout_gravity="right"
+            android:onClick="onUpdateNote"
+            android:background="@drawable/button_pressed"
+            android:src="@android:drawable/ic_menu_save"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="@string/edit_note"
+        android:textColor="@color/colorBlack"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_marginTop="10dp" />
+
+    <EditText
+        android:id="@+id/title_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/title"
+        android:textColor="@color/colorBlack"
+        android:inputType="textCapSentences"
+        android:lines="1"
+        android:textColorHint="@color/colorBlack"
+        android:padding="10dp"
+        android:maxLength="25" />
+
+    <EditText
+        android:id="@+id/textDesc_edit"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.61"
+        android:gravity="top|left"
+        android:hint="@string/text"
+        android:textColor="@color/colorBlack"
+        android:inputType="textCapSentences|textMultiLine"
+        android:textColorHint="@color/colorBlack"
+        android:padding="10dp"
+        />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        android:gravity="center_vertical|center_horizontal"
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/date_time"
+            android:id="@+id/dateTime_edit"
+            android:padding="10dp"
+            android:textColor="@color/colorBlack"
+            android:gravity="left"
+            android:layout_weight="1.0"
+            />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="198dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_weight="1.0">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/date_time"
+                android:id="@+id/get_date_time_edit"
+                android:padding="10dp"
+                android:textColor="@color/colorBlack"
+                android:layout_gravity="left"
+                android:gravity="right"
+                android:layout_weight="1.0"
+                />
+
+            <Button
+                android:id="@+id/btn_set_date_edit"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="right"
+                android:onClick="onChangeDate"
+                android:background="@android:drawable/ic_menu_edit"
+                android:gravity="right"
+                />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/is_important"
+            android:id="@+id/textView2_edit"
+            android:padding="10dp"
+            android:textColor="@color/colorBlack"
+            />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/important"
+            android:id="@+id/chb_important_edit"
+            android:padding="10dp"
+            android:textColor="@color/colorBlack"
+            android:layout_marginLeft="100dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="@string/done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/colorBlack"
+            android:textSize="18sp"
+
+            android:padding="10dp"
+            android:id="@+id/textView_done" />
+
+        <CheckBox
+            android:text="@string/important"
+            android:layout_width="132dp"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_marginLeft="100dp"
+            android:layout_weight="181.95"
+            android:id="@+id/ch_done_edit" />
+    </LinearLayout>
+
+</LinearLayout>

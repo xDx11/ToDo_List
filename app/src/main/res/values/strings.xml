@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">To Do List!</string>
+    <string name="no_notes_available">Nemáte uloženy žádné poznámky.</string>
+    <string name="delete">Smazat</string>
+    <string name="edit">Upravit</string>
+    <string name="note_deleted">Poznámka smazána.</string>
+    <string name="note_not_deleted">Ups, poznámku se nepodařilo smazat :(.</string>
+
+    <string name="add_note">Přidání úkolu</string>
+    <string name="edit_note">Úprava poznámky</string>
+    <string name="error">Chyba</string>
+
+    <string name="title">Titulek</string>
+    <string name="text">Text</string>
+    <string name="submit">Uložit</string>
+    <string name="note_not_added">Jejda, poznámku se nepodařilo uložit :(.</string>
+    <string name="is_important">Důležité?</string>
+    <string name="important">Ano</string>
+    <string name="date_time">Datum:</string>
+    <string name="done">Splněno?</string>
+    <string name="notDone">Nesplněno?</string>
+</resources>

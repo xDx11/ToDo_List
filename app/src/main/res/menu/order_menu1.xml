@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <item
+            android:id="@+id/action_start"
+            android:title="Od ..."
+            android:numericShortcut="s"
+            android:icon="@android:drawable/ic_popup_sync"
+            />
+
+        <item
+            android:id="@+id/action_end"
+            android:title="Do ..."
+            android:numericShortcut="e"
+            android:icon="@android:drawable/ic_dialog_info"
+            />
+
+        <item
+            android:id="@+id/action_title"
+            android:title="Název ..."
+            android:numericShortcut="t"
+            android:icon="@android:drawable/ic_dialog_info"
+            />
+
+        <item
+            android:id="@+id/action_desc"
+            android:title="Pořadí řazení ..."
+            android:numericShortcut="d"
+            android:icon="@android:drawable/ic_dialog_info"
+            />
+
+</menu>

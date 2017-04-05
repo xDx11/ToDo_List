@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBack"
+    tools:context="xdx.fim.uhk.cz.notes_v2.DetailActivity"
+    >
+
+    <include layout="@layout/toolbar"
+        android:id="@+id/toolbar_inc" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context="xdx.fim.uhk.cz.notes_v2.DetailActivity"
+        android:background="@color/colorBack"
+        android:orientation="vertical"
+        android:divider="#ffffff"
+        android:layout_below="@+id/toolbar_inc"
+        android:id="@+id/linearLayout2">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Title"
+        android:textColor="@color/colorBlack"
+        android:id="@+id/textViewTitle"
+        android:textSize="25sp" />
+
+
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorAccent"
+        android:layout_marginTop="5dp" />
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="Od: "
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView5"
+                android:layout_weight="1"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                android:textSize="15sp"
+                android:textColor="@color/colorBlack"
+                android:layout_marginTop="5dp" />
+
+            <TextView
+                android:text="Start Date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:id="@+id/textViewStart"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                android:textSize="15sp"
+                android:textColor="@color/colorBlack"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/colorAccent"
+            android:layout_weight="1"
+            android:layout_marginTop="5dp" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="Do:"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView6"
+                android:layout_weight="1"
+                android:layout_marginTop="5dp"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                android:textSize="15sp"
+                android:textColor="@color/colorBlack" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Dead Date"
+                android:textColor="@color/colorBlack"
+                android:id="@+id/textViewDate"
+                android:textSize="15sp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:id="@+id/view3"
+            android:background="@color/colorAccent" />
+
+        <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Text"
+        android:id="@+id/textViewDesc"
+        android:textColor="@color/colorBlack"
+        android:layout_marginTop="10dp"
+        />
+
+        </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_detail_done"
+        android:background="@drawable/grey_check_selector"
+        android:layout_marginRight="11dp"
+        android:layout_marginEnd="11dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="onNoteDone" />
+
+    <ImageButton
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:id="@+id/btn_delete"
+        android:background="@drawable/button_pressed"
+        android:src="@android:drawable/ic_menu_delete"
+        android:onClick="onNoteDelete"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="60dp"
+        android:layout_marginTop="10dp" />
+</RelativeLayout>

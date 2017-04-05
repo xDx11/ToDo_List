@@ -1,0 +1,99 @@
+package xdx.fim.uhk.cz.notes_v2;
+
+/**
+ * Created by xDx on 25.2.2016.
+ */
+public class Note {
+    private int id;
+    private String title;
+    private String description;
+    private boolean isImportant;
+    private long deadDate;
+    private long startDate;
+    private boolean isDone;
+
+    public Note(int id, String title, String description, boolean isImportant) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.isImportant = isImportant;
+    }
+
+    public Note(int id, String title, String description, boolean isImportant, long deadDate) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.isImportant = isImportant;
+        this.deadDate = deadDate;
+    }
+
+    public Note(int id, String title, String description, boolean isImportant, long deadDate, long startDate, boolean isDone) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.isImportant = isImportant;
+        this.deadDate = deadDate;
+        this.startDate = startDate;
+        this.isDone = isDone;
+    }
+
+    public Note(){
+
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public boolean isImportant() {
+        return isImportant;
+    }
+
+    public void setIsImportant(boolean isImportant) {
+        this.isImportant = isImportant;
+    }
+
+    public long getDeadDate() {
+        return deadDate;
+    }
+
+    public void setDeadDate(long deadDate) {
+        this.deadDate = deadDate;
+    }
+
+    public long getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(long startDate) {
+        this.startDate = startDate;
+    }
+
+    public boolean isDone() {
+        return isDone;
+    }
+
+    public void setDone(boolean done) {
+        isDone = done;
+    }
+}

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="H:\PLOCHA\ANDROID APPS\Notes_v2\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\libs\internal_impl-23.1.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
+        <dex dex="H:\PLOCHA\ANDROID APPS\Notes_v2\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.1.1_d54e813cdf0a7f3a9c06e25e03a123228d71d02d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="H:\PLOCHA\ANDROID APPS\Notes_v2\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="11247bf93327f3ee6092788e42bf7b8bd3923144">
+        <dex dex="H:\PLOCHA\ANDROID APPS\Notes_v2\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_e22b60bcce110a75a404b6c7a3d631352bb77ecb\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="H:\PLOCHA\ANDROID APPS\Notes_v2\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="0b882178c55a96c32c022d9d403f8b0b799ac625">
+        <dex dex="H:\PLOCHA\ANDROID APPS\Notes_v2\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_636d3ca30adb93d1b9c30c54d40f92f51b2f055b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Radek Soucek\AppData\Local\Android\Sdk\extras\android\m2repository\com\android\support\support-annotations\23.1.1\support-annotations-23.1.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
+        <dex dex="H:\PLOCHA\ANDROID APPS\Notes_v2\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.1.1_31a8f37c9a077c719033d4ef31ddae497b0ba1c1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="H:\android\ToDo_List\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
+        <dex dex="H:\android\ToDo_List\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-23.1.1_b596585169054a4280043ae875fb2e642b847cee\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="H:\android\ToDo_List\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
+        <dex dex="H:\android\ToDo_List\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.1.1_b4595edc1d2b6224f773b0bad8e28db893bf0d5b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="H:\PLOCHA\ANDROID APPS\Notes_v2\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
+        <dex dex="H:\PLOCHA\ANDROID APPS\Notes_v2\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-23.1.1_61244528d882724ba55c4dff9ac1ab88ecc18bc2\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="H:\android\ToDo_List\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\libs\internal_impl-23.1.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
+        <dex dex="H:\android\ToDo_List\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.1.1_730f104398fa9654c96242cddd3e9c3bdfb5e397\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="H:\android\ToDo_List\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="8a5bf9d1a56eca34a50bd2911b4d6b253a8fdeb6">
+        <dex dex="H:\android\ToDo_List\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_a03dead6a0be929e5bf97047bf221d2ddf6df3b2\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="H:\android\ToDo_List\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="d0243f122d1c2e7ed554ed40f3820e4c69c0c0cf">
+        <dex dex="H:\android\ToDo_List\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_c37d1b4c56c57760785daa1803e1aae9868e5501\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="H:\PLOCHA\ANDROID APPS\Notes_v2\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
+        <dex dex="H:\PLOCHA\ANDROID APPS\Notes_v2\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.1.1_ecb76b402540e879dbd8a3d3f519872d88bcb430\classes.dex" />
+    </item>
+
+</items>
