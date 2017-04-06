@@ -1,5 +1,6 @@
 package xdx.fim.uhk.cz.notes_v2;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -16,6 +17,8 @@ import android.os.Bundle;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
 import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -47,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences sharedpreferences;
     private int switchNum;
     private int orderWay;
+    private MenuItem menuItem_Sort;
     private static final String MyPREFERENCES = "myPreferences";
     public static final String FILTER_DONE = "filter_done";
     public static final String ORDER_NUM = "order_num";
@@ -71,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
         // Always cast your custom Toolbar here, and set it as the ActionBar.
         Toolbar tb = (Toolbar) findViewById(R.id.toolbar_inc);
         switchDone = (Switch) findViewById(R.id.switch_done_filter);
-        order = (ImageButton) findViewById(R.id.btn_orderby);
 
         setSupportActionBar(tb);
 
@@ -107,8 +110,26 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent(this, AddActivity.class);
         startActivityForResult(i, 0);
     }
-    
-    
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        menuItem_Sort = menu.findItem(R.id.action_sort);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_sort:
+                orderBy();
+                return true;
+        }
+        return true;
+    }
+
     public void onCreateContextMenu (ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo){
         if (v.getId()==R.id.listNotes) {
             AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)menuInfo;
@@ -126,19 +147,11 @@ public class MainActivity extends AppCompatActivity {
             }
             menu.add(0, MENU_UPDATE_ID, 0, R.string.edit);
             menu.add(0, MENU_DELETE_ID, 0, R.string.delete);
-
         }
-
-
-        //super.onCreateContextMenu(menu, v, menuInfo);
-
-
-
     }
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
-
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         int index = info.position;
         View view = info.targetView;
@@ -202,7 +215,7 @@ public class MainActivity extends AppCompatActivity {
                 c.close();
             }
         }
-
+        notes_db.close();
 
         listView = (ListView) findViewById(R.id.listNotes);
         NotesAdapter adapter = new NotesAdapter(this,R.layout.list_item_note,notes);
@@ -261,7 +274,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void orderBy(View v){
+    public void orderBy(){
 
         PopupMenu popup = new PopupMenu(MainActivity.this, order);
         //Inflating the Popup using xml file

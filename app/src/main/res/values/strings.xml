@@ -6,7 +6,7 @@
     <string name="note_deleted">Poznámka smazána.</string>
     <string name="note_not_deleted">Ups, poznámku se nepodařilo smazat :(.</string>
 
-    <string name="add_note">Přidání úkolu</string>
+    <string name="add_note">Přidání poznámky</string>
     <string name="edit_note">Úprava poznámky</string>
     <string name="error">Chyba</string>
 

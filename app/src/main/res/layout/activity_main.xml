@@ -21,8 +21,22 @@
         android:dividerHeight="2px"
         android:layout_below="@+id/toolbar_inc" />
 
+
+
     <ImageButton
         android:background="@drawable/button_round"
+        android:id="@+id/imageButtonBack"
+        android:layout_width="70dp"
+        android:onClick="onAddNoteClicked"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp"
+        />
+
+    <ImageButton
         android:id="@+id/imageButton"
         android:layout_width="70dp"
         android:onClick="onAddNoteClicked"
@@ -33,20 +47,8 @@
         android:layout_marginRight="15dp"
         android:layout_marginBottom="15dp"
         android:src="@drawable/sel_btn_add"
+        android:background="@null"
 
-        />
-
-    <ImageButton
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:id="@+id/btn_orderby"
-        android:background="@drawable/button_pressed"
-        android:onClick="orderBy"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
-        android:src="@android:drawable/ic_menu_sort_by_size"
         />
 
     <Switch
@@ -56,11 +58,10 @@
         android:id="@+id/switch_done_filter"
         android:textColor="@color/colorWhite"
         android:textColorLink="@android:color/white"
-        android:layout_alignBaseline="@+id/btn_orderby"
-        android:layout_alignBottom="@+id/btn_orderby"
-        android:layout_toStartOf="@+id/btn_orderby"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="8dp" />
+        android:layout_above="@+id/listNotes"
+        android:layout_alignEnd="@+id/imageButton"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="13dp" />
 
 
 </RelativeLayout>

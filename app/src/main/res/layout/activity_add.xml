@@ -86,16 +86,22 @@
                     android:gravity="right"
                     android:layout_weight="1.0"
                     android:labelFor="@+id/btn_set_date"
+                    android:onClick="onChangeDate"
+                    android:clickable="true"
+                    android:longClickable="true"
+                    android:focusable="true"
                     />
 
-                <Button
+                <ImageView
                     android:id="@+id/btn_set_date"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_gravity="right"
                     android:onClick="onChangeDate"
-                    android:background="@android:drawable/ic_menu_my_calendar"
+                    android:background="@drawable/button_pressed_callendar"
+                    android:src="@android:drawable/ic_menu_my_calendar"
                     android:gravity="right"
+
                     />
 
 
@@ -137,17 +143,4 @@
 
     </LinearLayout>
 
-    <ImageButton
-        android:id="@+id/submit"
-        android:layout_gravity="right"
-        android:onClick="onAddNote"
-        android:background="@drawable/button_pressed"
-        android:src="@android:drawable/ic_menu_save"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="5dp" />
 </RelativeLayout>

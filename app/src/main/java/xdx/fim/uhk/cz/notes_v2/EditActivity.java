@@ -1,5 +1,6 @@
 package xdx.fim.uhk.cz.notes_v2;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -9,11 +10,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,9 +29,10 @@ public class EditActivity extends AppCompatActivity {
 
     private int id;
     private TextView dateView;
-    private Button setDateBtn;
+    private ImageView setDateBtn;
     private long dateUpd = 0;
     private DatePickerDialog datePickDiag;
+    private MenuItem menuItem_Save;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +65,24 @@ public class EditActivity extends AppCompatActivity {
         String date = Utils.getFormattedDate(Utils.DEFAULT, new Date(dateUpd));
         dateView.setText(date);
 
-        setDateBtn = (Button) findViewById(R.id.btn_set_date_edit);
+        setDateBtn = (ImageView) findViewById(R.id.btn_set_date_edit);
 
+        dateView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setDateBtn.setPressed(true);
+                datePickDiag.show();
+            }
+        });
+
+        dateView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                setDateBtn.setPressed(true);
+                datePickDiag.show();
+                return true;
+            }
+        });
 
         Calendar newCalendar = Calendar.getInstance();
         datePickDiag = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
@@ -87,11 +109,38 @@ public class EditActivity extends AppCompatActivity {
         checkBox_done.setChecked(note.isDone());
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.add_menu, menu);
+        menuItem_Save = menu.findItem(R.id.action_add);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_add:
+                onUpdateNote();
+                return true;
+            case android.R.id.home:
+                try {
+                    Intent returnIntent = new Intent();
+                    setResult(Activity.RESULT_CANCELED, returnIntent);
+                    finish();
+                    return true;
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
+        }
+        return true;
+    }
+
     public void onChangeDate(View v){
         datePickDiag.show();
     }
 
-    public void onUpdateNote(View v){
+    public void onUpdateNote(){
 
         String title = ((EditText)findViewById(R.id.title_edit)).getText().toString();
         String text = ((EditText)findViewById(R.id.textDesc_edit)).getText().toString();

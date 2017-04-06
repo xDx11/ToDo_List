@@ -1,5 +1,6 @@
 package xdx.fim.uhk.cz.notes_v2;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -10,6 +11,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -28,6 +32,8 @@ public class DetailActivity extends AppCompatActivity {
     private int id;
     private Note note;
     private boolean isDelete;
+    private MenuItem menuItem_Delete;
+    private MenuItem menuItem_Done;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +66,7 @@ public class DetailActivity extends AppCompatActivity {
             }
             c.close();
         }
+        notes_db.close();
 
         TextView textTitle = (TextView) findViewById(R.id.textViewTitle);
         TextView textDesc = (TextView) findViewById(R.id.textViewDesc);
@@ -74,10 +81,60 @@ public class DetailActivity extends AppCompatActivity {
         String formatedDate = newFormat.format(note.getStartDate()*1000L);
         textDateStart.setText(formatedDate);
 
-        if(note.isDone()){
-            Button btnDone = (Button) findViewById(R.id.btn_detail_done);
-            btnDone.setBackgroundResource(R.drawable.grey_green_check_selector);
+        try {
+            if(note.isDone()){
+                if(menuItem_Done!=null){
+                    menuItem_Done.setIcon(R.drawable.button_pressed_done);
+                }
+            }
+        } catch (Exception e){
+            e.printStackTrace();
         }
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.detail_menu, menu);
+        menuItem_Delete = menu.findItem(R.id.action_delete);
+        menuItem_Done = menu.findItem(R.id.action_done);
+
+        try {
+            if(note!=null){
+                if(note.isDone()){
+                    if(menuItem_Done!=null){
+                        menuItem_Done.setIcon(R.drawable.button_pressed_done);
+                    }
+                }
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_delete:
+                onNoteDelete();
+                return true;
+            case R.id.action_done:
+                onNoteDone();
+                return true;
+            case android.R.id.home:
+                try {
+                    Intent returnIntent = new Intent();
+                    setResult(Activity.RESULT_CANCELED, returnIntent);
+                    finish();
+                    return true;
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
+        }
+        return true;
     }
 
     private boolean getBoolean(int columnIndex, Cursor cursor){
@@ -88,7 +145,7 @@ public class DetailActivity extends AppCompatActivity {
         }
     }
 
-    public void onNoteDone(View v){
+    public void onNoteDone(){
 
         Notes_DB notes_db = new Notes_DB(this);
 
@@ -104,7 +161,7 @@ public class DetailActivity extends AppCompatActivity {
         }
     }
 
-    public void onNoteDelete(View v){
+    public void onNoteDelete(){
         AlertDialog diaBox = AskOption();
         diaBox.show();
     }
@@ -119,21 +176,23 @@ public class DetailActivity extends AppCompatActivity {
                 .setPositiveButton("Smazat", new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialog, int whichButton) {
-                        Notes_DB notes = new Notes_DB(getApplicationContext());
-                        if(notes.deleteNote(id)){
+                        try{
+                            Notes_DB notes = new Notes_DB(getApplicationContext());
+                            if(notes.deleteNote(id)){
+                                isDelete = true;
+                                Intent returnIntent = new Intent();
+                                setResult(Activity.RESULT_OK, returnIntent);
+                                Toast.makeText(getApplicationContext(), R.string.note_deleted, Toast.LENGTH_SHORT).show();
+                                finish();
 
-                            Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            getApplicationContext().startActivity(i);
-                            finish();
-                            isDelete = true;
-                            Toast.makeText(getApplicationContext(), R.string.note_deleted, Toast.LENGTH_SHORT).show();
-                        } else{
-                            Toast.makeText(getApplicationContext(), R.string.note_not_deleted, Toast.LENGTH_SHORT).show();
+                            } else{
+                                Toast.makeText(getApplicationContext(), R.string.note_not_deleted, Toast.LENGTH_SHORT).show();
+                            }
+                            notes.close();
+                            dialog.dismiss();
+                        } catch (Exception e){
+                            e.printStackTrace();
                         }
-                        notes.close();
-                        dialog.dismiss();
-
                     }
 
                 })
