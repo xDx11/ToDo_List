@@ -1,10 +1,8 @@
-package xdx.fim.uhk.cz.notes_v2;
+package xdx.fim.uhk.cz.todo_list;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,7 +12,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -25,9 +22,8 @@ import android.widget.Toast;
 import java.util.Calendar;
 import java.util.Date;
 
-public class EditActivity extends AppCompatActivity {
+public class AddActivity extends AppCompatActivity {
 
-    private int id;
     private TextView dateView;
     private ImageView setDateBtn;
     private long dateUpd = 0;
@@ -37,35 +33,18 @@ public class EditActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit);
+        setContentView(R.layout.activity_add);
 
         Toolbar tb = (Toolbar) findViewById(R.id.toolbar_inc);
         setSupportActionBar(tb);
         final ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
 
-        id = getIntent().getIntExtra("id", 0);
-
-        Context ctx = getApplicationContext();
-        Notes_DB notes_db = new Notes_DB(ctx);
-
-        Cursor c = notes_db.getNote((id));
-        Note note = new Note();
-        if (c != null) {
-            while(c.moveToNext()) {
-                note = (new Note(c.getInt(0),c.getString(1),c.getString(2),getBoolean(3,c)));
-                note.setDeadDate(c.getLong(4));
-                note.setDone(getBoolean(6,c));
-            }
-            c.close();
-        }
-
-        dateView = (TextView) findViewById(R.id.get_date_time_edit);
-        dateUpd = note.getDeadDate();
-        String date = Utils.getFormattedDate(Utils.DEFAULT, new Date(dateUpd));
+        dateView = (TextView) findViewById(R.id.get_date_time);
+        String date = Utils.getFormattedDate(Utils.DEFAULT, new Date());
         dateView.setText(date);
 
-        setDateBtn = (ImageView) findViewById(R.id.btn_set_date_edit);
+        setDateBtn = (ImageView) findViewById(R.id.btn_set_date);
 
         dateView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,21 +71,11 @@ public class EditActivity extends AppCompatActivity {
                 newDate.set(year, monthOfYear, dayOfMonth);
                 dateView.setText(Utils.getFormattedDate(Utils.DEFAULT, newDate.getTime()));
                 dateUpd = newDate.getTime().getTime();
+                setDateBtn.setPressed(false);
             }
 
         },newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
 
-
-
-        TextView textTitle = (TextView) findViewById(R.id.title_edit);
-        TextView textDesc = (TextView) findViewById(R.id.textDesc_edit);
-        CheckBox checkBox = (CheckBox) findViewById(R.id.chb_important_edit);
-        CheckBox checkBox_done = (CheckBox) findViewById(R.id.ch_done_edit);
-
-        textTitle.setText(note.getTitle());
-        textDesc.setText(note.getDescription());
-        checkBox.setChecked(note.isImportant());
-        checkBox_done.setChecked(note.isDone());
     }
 
     @Override
@@ -121,7 +90,7 @@ public class EditActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_add:
-                onUpdateNote();
+                onAddNote();
                 return true;
             case android.R.id.home:
                 try {
@@ -140,15 +109,14 @@ public class EditActivity extends AppCompatActivity {
         datePickDiag.show();
     }
 
-    public void onUpdateNote(){
+    public void onAddNote(){
 
-        String title = ((EditText)findViewById(R.id.title_edit)).getText().toString();
-        String text = ((EditText)findViewById(R.id.textDesc_edit)).getText().toString();
-        boolean important2 = ((CheckBox)findViewById(R.id.chb_important_edit)).isChecked();
-        boolean done2 = ((CheckBox)findViewById(R.id.ch_done_edit)).isChecked();
+        String title = ((EditText)findViewById(R.id.title)).getText().toString();
+        String text = ((EditText)findViewById(R.id.text)).getText().toString();
+        boolean important2 = ((CheckBox)findViewById(R.id.chb_important)).isChecked();
 
-        EditText titleText = (EditText) findViewById(R.id.title_edit);
-        EditText descText = (EditText) findViewById(R.id.textDesc_edit);
+        EditText titleText = (EditText) findViewById(R.id.title);
+        EditText descText = (EditText) findViewById(R.id.text);
 
 
         if(TextUtils.isEmpty(title)) {
@@ -156,25 +124,22 @@ public class EditActivity extends AppCompatActivity {
             return;
         }
 
-        Notes_DB notes_db = new Notes_DB(this);
+        if(dateUpd==0){
+            dateUpd = System.currentTimeMillis();
+        }
 
-        boolean success = notes_db.updateNote(id,title,text,important2, dateUpd, done2);
+        Notes_DB notes_db = new Notes_DB(this);
+        //long id = notes_db.insertNote(title, text,important2, new Date().getTime());
+        long id = notes_db.insertNote(title, text,important2, dateUpd);
+
         notes_db.close();
-        if (success) {
+        if (id > -1) {
             Intent i = new Intent(this, MainActivity.class);
-            //i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivityForResult(i, 0);
             finish();
         }else{
             Toast.makeText(this, R.string.note_not_added, Toast.LENGTH_LONG).show();
-        }
-    }
-
-    private boolean getBoolean(int columnIndex, Cursor cursor){
-        if (cursor.isNull(columnIndex) || cursor.getShort(columnIndex) == 0) {
-            return false;
-        } else {
-            return true;
         }
     }
 }

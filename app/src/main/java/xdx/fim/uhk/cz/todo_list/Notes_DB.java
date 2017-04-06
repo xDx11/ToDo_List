@@ -1,13 +1,11 @@
-package xdx.fim.uhk.cz.notes_v2;
+package xdx.fim.uhk.cz.todo_list;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.util.Calendar;
 import java.util.Date;
 
 /**

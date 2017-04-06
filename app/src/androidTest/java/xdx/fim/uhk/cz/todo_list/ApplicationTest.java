@@ -1,4 +1,4 @@
-package xdx.fim.uhk.cz.notes_v2;
+package xdx.fim.uhk.cz.todo_list;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
