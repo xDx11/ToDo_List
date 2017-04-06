@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="xdx.fim.uhk.cz.notes_v2">
+    package="xdx.fim.uhk.cz.todo_list">
 
     <application
         android:allowBackup="true"
@@ -10,7 +10,7 @@
         android:theme="@style/AppTheme"
         android:versionCode="2"
         >
-        <activity android:name=".MainActivity"
+        <activity android:name="xdx.fim.uhk.cz.todo_list.MainActivity"
             android:screenOrientation="portrait"
             >
             <intent-filter>
@@ -19,18 +19,18 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DetailActivity"
-            android:parentActivityName=".MainActivity"
+            android:name="xdx.fim.uhk.cz.todo_list.DetailActivity"
+            android:parentActivityName="xdx.fim.uhk.cz.todo_list.MainActivity"
             android:screenOrientation="portrait"
             />
         <activity
-            android:name=".AddActivity"
-            android:parentActivityName=".MainActivity"
+            android:name="xdx.fim.uhk.cz.todo_list.AddActivity"
+            android:parentActivityName="xdx.fim.uhk.cz.todo_list.MainActivity"
             android:screenOrientation="portrait"
              />
         <activity
-            android:name=".EditActivity"
-            android:parentActivityName=".MainActivity"
+            android:name="xdx.fim.uhk.cz.todo_list.EditActivity"
+            android:parentActivityName="xdx.fim.uhk.cz.todo_list.MainActivity"
             android:screenOrientation="portrait"
             />
     </application>

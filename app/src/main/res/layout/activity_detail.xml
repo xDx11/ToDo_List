@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBack"
-    tools:context="xdx.fim.uhk.cz.notes_v2.DetailActivity"
+    tools:context="xdx.fim.uhk.cz.todo_list.DetailActivity"
     >
 
     <include layout="@layout/toolbar"
@@ -17,7 +17,7 @@
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
-        tools:context="xdx.fim.uhk.cz.notes_v2.DetailActivity"
+        tools:context="xdx.fim.uhk.cz.todo_list.DetailActivity"
         android:background="@color/colorBack"
         android:orientation="vertical"
         android:divider="#ffffff"

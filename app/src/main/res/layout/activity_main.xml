@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:theme="@style/SCBSwitch"
     android:background="@color/colorBack"
-    tools:context="xdx.fim.uhk.cz.notes_v2.MainActivity">
+    tools:context="xdx.fim.uhk.cz.todo_list.MainActivity">
 
     <include layout="@layout/toolbar"
         android:id="@+id/toolbar_inc" />
