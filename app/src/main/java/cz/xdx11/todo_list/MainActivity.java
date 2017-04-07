@@ -24,9 +24,11 @@ import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import com.orm.SugarContext;
+
 import java.util.List;
 
-import xdx.fim.uhk.cz.todo_list.R;
+import cz.xdx11.todo_list.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -65,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         try {
 
+            SugarContext.init(this);
             setContentView(R.layout.activity_main);
 
             sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
@@ -218,6 +221,7 @@ public class MainActivity extends AppCompatActivity {
         }
         notes_db.close();
         */
+
         notes = Note.listAll(Note.class);
 
         listView = (ListView) findViewById(R.id.listNotes);

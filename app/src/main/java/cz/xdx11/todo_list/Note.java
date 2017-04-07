@@ -6,7 +6,7 @@ import com.orm.dsl.Table;
 /**
  * Created by xDx on 25.2.2016.
  */
-@Table
+
 public class Note extends SugarRecord{
     private long id;
     private String title;
@@ -16,11 +16,9 @@ public class Note extends SugarRecord{
     private long startDate;
     private boolean isDone;
 
-    public Note(long id, String title, String description, boolean isImportant) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.isImportant = isImportant;
+
+    public Note(){
+
     }
 
     public Note(String title, String description, boolean isImportant, long startDate, long deadDate, boolean isDone) {
@@ -32,6 +30,14 @@ public class Note extends SugarRecord{
         this.isDone = isDone;
     }
 
+    /*
+    public Note(long id, String title, String description, boolean isImportant) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.isImportant = isImportant;
+    }
+
     public Note(long id, String title, String description, boolean isImportant, long deadDate, long startDate, boolean isDone) {
         this.id = id;
         this.title = title;
@@ -41,10 +47,8 @@ public class Note extends SugarRecord{
         this.startDate = startDate;
         this.isDone = isDone;
     }
+    */
 
-    public Note(){
-
-    }
 
     public Long getId() {
         return id;
@@ -100,5 +104,18 @@ public class Note extends SugarRecord{
 
     public void setDone(boolean done) {
         isDone = done;
+    }
+
+    @Override
+    public String toString() {
+        return "Note{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", isImportant=" + isImportant +
+                ", deadDate=" + deadDate +
+                ", startDate=" + startDate +
+                ", isDone=" + isDone +
+                '}';
     }
 }

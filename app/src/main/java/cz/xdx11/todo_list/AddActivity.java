@@ -22,13 +22,11 @@ import android.widget.Toast;
 import java.util.Calendar;
 import java.util.Date;
 
-import xdx.fim.uhk.cz.todo_list.R;
-
 public class AddActivity extends AppCompatActivity {
 
     private TextView dateView;
     private ImageView setDateBtn;
-    private long dateUpd = 0;
+    private long endDate = 0;
     private DatePickerDialog datePickDiag;
     private MenuItem menuItem_Save;
 
@@ -72,7 +70,7 @@ public class AddActivity extends AppCompatActivity {
                 Calendar newDate = Calendar.getInstance();
                 newDate.set(year, monthOfYear, dayOfMonth);
                 dateView.setText(Utils.getFormattedDate(Utils.DEFAULT, newDate.getTime()));
-                dateUpd = newDate.getTime().getTime();
+                endDate = newDate.getTime().getTime();
                 setDateBtn.setPressed(false);
             }
 
@@ -114,27 +112,24 @@ public class AddActivity extends AppCompatActivity {
     public void onAddNote(){
 
         String title = ((EditText)findViewById(R.id.title)).getText().toString();
-        String text = ((EditText)findViewById(R.id.text)).getText().toString();
-        boolean important2 = ((CheckBox)findViewById(R.id.chb_important)).isChecked();
+        String desc = ((EditText)findViewById(R.id.text)).getText().toString();
+        boolean isImportant = ((CheckBox)findViewById(R.id.chb_important)).isChecked();
 
+        //Validate
         EditText titleText = (EditText) findViewById(R.id.title);
-        EditText descText = (EditText) findViewById(R.id.text);
-
-
         if(TextUtils.isEmpty(title)) {
             titleText.setError("Prázdná hodnota není povolena!");
             return;
         }
 
-        if(dateUpd==0){
-            dateUpd = System.currentTimeMillis();
+        if(endDate ==0){
+            endDate = System.currentTimeMillis();
         }
 
-        Notes_DB notes_db = new Notes_DB(this);
-        //long id = notes_db.insertNote(title, text,important2, new Date().getTime());
-        long id = notes_db.insertNote(title, text,important2, dateUpd);
+        long startDate = new Date().getTime()/1000L;
+        Note note = new Note(title, desc, isImportant, startDate, endDate, false );
+        long id = note.save();
 
-        notes_db.close();
         if (id > -1) {
             Intent i = new Intent(this, MainActivity.class);
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

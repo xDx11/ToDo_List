@@ -24,16 +24,17 @@ import android.widget.Toast;
 import java.util.Calendar;
 import java.util.Date;
 
-import xdx.fim.uhk.cz.todo_list.R;
+import cz.xdx11.todo_list.R;
 
 public class EditActivity extends AppCompatActivity {
 
-    private int id;
+    private long id;
     private TextView dateView;
     private ImageView setDateBtn;
     private long dateUpd = 0;
     private DatePickerDialog datePickDiag;
     private MenuItem menuItem_Save;
+    private Note note;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,23 +44,11 @@ public class EditActivity extends AppCompatActivity {
         Toolbar tb = (Toolbar) findViewById(R.id.toolbar_inc);
         setSupportActionBar(tb);
         final ActionBar ab = getSupportActionBar();
-        ab.setDisplayHomeAsUpEnabled(true);
+        if(ab!=null)
+            ab.setDisplayHomeAsUpEnabled(true);
 
-        id = getIntent().getIntExtra("id", 0);
-
-        Context ctx = getApplicationContext();
-        Notes_DB notes_db = new Notes_DB(ctx);
-
-        Cursor c = notes_db.getNote((id));
-        Note note = new Note();
-        if (c != null) {
-            while(c.moveToNext()) {
-                note = (new Note(c.getInt(0),c.getString(1),c.getString(2),getBoolean(3,c)));
-                note.setDeadDate(c.getLong(4));
-                note.setDone(getBoolean(6,c));
-            }
-            c.close();
-        }
+        id = getIntent().getLongExtra("id", 0);
+        note = Note.findById(Note.class, id);
 
         dateView = (TextView) findViewById(R.id.get_date_time_edit);
         dateUpd = note.getDeadDate();
@@ -148,34 +137,27 @@ public class EditActivity extends AppCompatActivity {
         boolean important2 = ((CheckBox)findViewById(R.id.chb_important_edit)).isChecked();
         boolean done2 = ((CheckBox)findViewById(R.id.ch_done_edit)).isChecked();
 
+        //validate
         EditText titleText = (EditText) findViewById(R.id.title_edit);
-        EditText descText = (EditText) findViewById(R.id.textDesc_edit);
-
-
         if(TextUtils.isEmpty(title)) {
             titleText.setError("Prázdná hodnota není povolena!");
             return;
         }
 
-        Notes_DB notes_db = new Notes_DB(this);
+        note.setTitle(title);
+        note.setDescription(text);
+        note.setDone(done2);
+        note.setIsImportant(important2);
+        note.setDeadDate(dateUpd);
 
-        boolean success = notes_db.updateNote(id,title,text,important2, dateUpd, done2);
-        notes_db.close();
-        if (success) {
+        long success = note.save();
+        if (success > -1) {
             Intent i = new Intent(this, MainActivity.class);
-            //i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivityForResult(i, 0);
             finish();
+            startActivity(i);
         }else{
             Toast.makeText(this, R.string.note_not_added, Toast.LENGTH_LONG).show();
         }
     }
 
-    private boolean getBoolean(int columnIndex, Cursor cursor){
-        if (cursor.isNull(columnIndex) || cursor.getShort(columnIndex) == 0) {
-            return false;
-        } else {
-            return true;
-        }
-    }
 }
