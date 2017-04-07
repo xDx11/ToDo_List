@@ -54,14 +54,6 @@ public class MainActivity extends AppCompatActivity {
     public static final String ORDER_NUM = "order_num";
     public static final String ORDER_WAY = "order_way";
 
-    private boolean getBoolean(int columnIndex, Cursor cursor){
-        if (cursor.isNull(columnIndex) || cursor.getShort(columnIndex) == 0) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -127,7 +119,12 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_sort:
-                orderBy();
+                try {
+                    orderBy();
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
+
                 return true;
         }
         return true;
@@ -168,11 +165,10 @@ public class MainActivity extends AppCompatActivity {
                 editNote(noteDel.getId());
                 return true;
             case MENU_DONE_ID:
-                Notes_DB notes_db = new Notes_DB(this);
-                boolean success = notes_db.updateNoteDone(noteDel.getId(), noteDel.isDone());
-                notes_db.close();
+                noteDel.setDone(!noteDel.isDone());
+                noteDel.save();
                 updateList();
-                return success;
+                return true;
             default:
                 return super.onContextItemSelected(item);
         }
@@ -190,51 +186,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateList(){
-
-        String testSwitched = sharedpreferences.getString(FILTER_DONE, null);
-        switchDone.setChecked(Boolean.parseBoolean(testSwitched));
-        switchNum = sharedpreferences.getInt(ORDER_NUM,0);
-        orderWay = sharedpreferences.getInt(ORDER_WAY,0);
-        List<Note> notes;
-
-        /*
-        Context ctx = getApplicationContext();
-        Notes_DB notes_db = new Notes_DB(ctx);
-        Cursor c = notes_db.getNotes(switchNum, orderWay);
-        if(switchDone.isChecked()){
-            if (c != null) {
-                while(c.moveToNext()) {
-                    notes.add(new Note(c.getInt(0),c.getString(1),c.getString(2),getBoolean(3,c), c.getLong(4), c.getLong(5), getBoolean(6,c)));
-                }
-                c.close();
-            }
-        }
-        else {
-            if (c != null) {
-                while(c.moveToNext()) {
-                    if(!getBoolean(6,c)){
-                        notes.add(new Note(c.getInt(0),c.getString(1),c.getString(2),getBoolean(3,c), c.getLong(4), c.getLong(5), getBoolean(6,c)));
-                    }
-                }
-                c.close();
-            }
-        }
-        notes_db.close();
-        */
-
-        notes = Note.listAll(Note.class);
-
+        List<Note> notes = sortedList();
         listView = (ListView) findViewById(R.id.listNotes);
         NotesAdapter adapter = new NotesAdapter(this,R.layout.list_item_note,notes);
-
-
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 Note note = (Note) parent.getItemAtPosition(position);
                 Intent intent = new Intent(MainActivity.this, DetailActivity.class);
                 intent.putExtra("id", note.getId());
@@ -244,10 +204,74 @@ public class MainActivity extends AppCompatActivity {
 
 
         });
-        for(int i = 0; i<notes.size();i++){
-            System.out.println(notes.get(i).getId() + " " + notes.get(i).getTitle());
-        }
         registerForContextMenu(listView);
+    }
+
+    private List<Note> sortedList(){
+        String testSwitched = sharedpreferences.getString(FILTER_DONE, null);
+        switchDone.setChecked(Boolean.parseBoolean(testSwitched));
+        switchNum = sharedpreferences.getInt(ORDER_NUM,0);
+        orderWay = sharedpreferences.getInt(ORDER_WAY,0);
+        List<Note> notes;
+        if(switchDone.isChecked()){
+            //notes = Note.listAll(Note.class);
+            if(orderWay==1){
+                switch(switchNum){
+                    case 1: // START DATE
+                        notes = Note.findWithQuery(Note.class, "Select * from note order by start_date asc");
+                        break;
+                    case 2: // END DATE
+                        notes = Note.findWithQuery(Note.class, "Select * from note order by dead_date asc");
+                        break;
+                    case 3: // TITLE
+                        notes = Note.findWithQuery(Note.class, "Select * from note order by title asc");
+                        break;
+                    default:
+                        notes = Note.listAll(Note.class);
+                        break;
+                }
+            } else {
+                switch(switchNum){
+                    case 1: // START DATE
+                        notes = Note.findWithQuery(Note.class, "Select * from note order by start_date desc");
+                        break;
+                    case 2: // END DATE
+                        notes = Note.findWithQuery(Note.class, "Select * from note order by dead_date desc");
+                        break;
+                    case 3: // TITLE
+                        notes = Note.findWithQuery(Note.class, "Select * from note order by title desc");
+                        break;
+                    default:
+                        notes = Note.listAll(Note.class);
+                        break;
+                }
+            }
+        } else {
+            if(orderWay==1){
+                switch(switchNum){
+                    case 1: // START DATE
+                        notes = Note.findWithQuery(Note.class, "Select * from note where is_done = '0' order by start_date asc");
+                    case 2: // END DATE
+                        notes = Note.findWithQuery(Note.class, "Select * from note where is_done = '0'  order by dead_date asc");
+                    case 3: // TITLE
+                        notes = Note.findWithQuery(Note.class, "Select * from note where is_done = '0'  order by title asc");
+                    default:
+                        notes = Note.listAll(Note.class);
+                }
+            } else {
+                switch(switchNum){
+                    case 1: // START DATE
+                        notes = Note.findWithQuery(Note.class, "Select * from note where is_done = '0'  order by start_date desc");
+                    case 2: // END DATE
+                        notes = Note.findWithQuery(Note.class, "Select * from note where is_done = '0'  order by dead_date desc");
+                    case 3: // TITLE
+                        notes = Note.findWithQuery(Note.class, "Select * from note where is_done = '0'  order by title desc");
+                    default:
+                        notes = Note.listAll(Note.class);
+                }
+            }
+        }
+        return notes;
     }
 
     private AlertDialog AskOption(final long id)
@@ -260,14 +284,13 @@ public class MainActivity extends AppCompatActivity {
                 .setPositiveButton("Smazat", new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialog, int whichButton) {
-                        Notes_DB notes = new Notes_DB(getApplicationContext());
-                        if(notes.deleteNote(id)){
+                        Note note = Note.findById(Note.class, id);
+                        if(note.delete()){
                             updateList();
                             Toast.makeText(getApplicationContext(), R.string.note_deleted, Toast.LENGTH_SHORT).show();
                         } else{
                             Toast.makeText(getApplicationContext(), R.string.note_not_deleted, Toast.LENGTH_SHORT).show();
                         }
-                        notes.close();
                         dialog.dismiss();
                     }
                 })
@@ -282,8 +305,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void orderBy(){
-
-        PopupMenu popup = new PopupMenu(MainActivity.this, order);
+        View menuItemView = findViewById(R.id.action_sort);
+        PopupMenu popup = new PopupMenu(MainActivity.this, menuItemView);
         //Inflating the Popup using xml file
         popup.getMenuInflater().inflate(R.menu.order_menu1, popup.getMenu());
 
@@ -298,7 +321,7 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     case POP_END:
                         switchNum = 2;
-                        Toast.makeText(MainActivity.this,"Seřazeno dle data dokončení.",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this,"Seřazeno dle data terminu.",Toast.LENGTH_SHORT).show();
                         order();
                         return true;
                     case POP_TITLE:
@@ -312,6 +335,8 @@ public class MainActivity extends AppCompatActivity {
                             item.setTitle("Sestupne");
                         } else {
                             orderWay=1;
+                            item.setTitle("Vzestupne");
+
                         }
                         Toast.makeText(MainActivity.this,"Seřazeno opacne.",Toast.LENGTH_SHORT).show();
                         order();
@@ -324,14 +349,13 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
         popup.show();//showing popup menu
     }
     private void order(){
         SharedPreferences.Editor editor = sharedpreferences.edit();
         editor.putInt(ORDER_NUM, switchNum);
         editor.putInt(ORDER_WAY, orderWay);
-        editor.commit();
+        editor.apply();
         updateList();
     }
 }

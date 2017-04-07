@@ -5,7 +5,7 @@
             android:id="@+id/action_start"
             android:title="Od ..."
             android:numericShortcut="s"
-            android:icon="@android:drawable/ic_popup_sync"
+            android:icon="@android:drawable/ic_dialog_info"
             />
 
         <item
