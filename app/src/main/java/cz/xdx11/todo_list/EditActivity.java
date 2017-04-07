@@ -1,4 +1,4 @@
-package xdx.fim.uhk.cz.todo_list;
+package cz.xdx11.todo_list;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
@@ -23,6 +23,8 @@ import android.widget.Toast;
 
 import java.util.Calendar;
 import java.util.Date;
+
+import xdx.fim.uhk.cz.todo_list.R;
 
 public class EditActivity extends AppCompatActivity {
 

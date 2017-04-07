@@ -1,4 +1,4 @@
-package xdx.fim.uhk.cz.todo_list;
+package cz.xdx11.todo_list;
 
 import android.content.Context;
 import android.graphics.Paint;
@@ -13,6 +13,8 @@ import android.widget.TextView;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
+import xdx.fim.uhk.cz.todo_list.R;
 
 /**
  * Created by xDx on 25.2.2016.

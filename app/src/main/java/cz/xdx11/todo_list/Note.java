@@ -1,10 +1,14 @@
-package xdx.fim.uhk.cz.todo_list;
+package cz.xdx11.todo_list;
+
+import com.orm.SugarRecord;
+import com.orm.dsl.Table;
 
 /**
  * Created by xDx on 25.2.2016.
  */
-public class Note {
-    private int id;
+@Table
+public class Note extends SugarRecord{
+    private long id;
     private String title;
     private String description;
     private boolean isImportant;
@@ -12,22 +16,23 @@ public class Note {
     private long startDate;
     private boolean isDone;
 
-    public Note(int id, String title, String description, boolean isImportant) {
+    public Note(long id, String title, String description, boolean isImportant) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.isImportant = isImportant;
     }
 
-    public Note(int id, String title, String description, boolean isImportant, long deadDate) {
-        this.id = id;
+    public Note(String title, String description, boolean isImportant, long startDate, long deadDate, boolean isDone) {
         this.title = title;
         this.description = description;
         this.isImportant = isImportant;
+        this.startDate = startDate;
         this.deadDate = deadDate;
+        this.isDone = isDone;
     }
 
-    public Note(int id, String title, String description, boolean isImportant, long deadDate, long startDate, boolean isDone) {
+    public Note(long id, String title, String description, boolean isImportant, long deadDate, long startDate, boolean isDone) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -41,11 +46,11 @@ public class Note {
 
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

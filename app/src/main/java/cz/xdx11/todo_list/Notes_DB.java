@@ -1,4 +1,4 @@
-package xdx.fim.uhk.cz.todo_list;
+package cz.xdx11.todo_list;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -54,7 +54,6 @@ public class Notes_DB {
                     + COLUMN_DATE_START + " INTEGER NOT NULL,"
                     + COLUMN_DONE + " INTEGER NOT NULL"
                     + ");");
-
         }
 
         /*
@@ -147,7 +146,7 @@ public class Notes_DB {
         return updateCount>0;
     }
 
-    public boolean updateNoteDone(int id, boolean done) {
+    public boolean updateNoteDone(long id, boolean done) {
         SQLiteDatabase db = openHelper.getWritableDatabase();
         System.out.println("-------------------------------------------------");
         System.out.println(done);

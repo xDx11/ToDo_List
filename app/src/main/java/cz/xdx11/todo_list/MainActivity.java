@@ -1,4 +1,4 @@
-package xdx.fim.uhk.cz.todo_list;
+package cz.xdx11.todo_list;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -24,7 +24,9 @@ import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.Toast;
 
-import java.util.ArrayList;
+import java.util.List;
+
+import xdx.fim.uhk.cz.todo_list.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -61,37 +63,41 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        try {
 
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+            setContentView(R.layout.activity_main);
 
+            sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+            // Always cast your custom Toolbar here, and set it as the ActionBar.
+            Toolbar tb = (Toolbar) findViewById(R.id.toolbar_inc);
+            switchDone = (Switch) findViewById(R.id.switch_done_filter);
 
-        // Always cast your custom Toolbar here, and set it as the ActionBar.
-        Toolbar tb = (Toolbar) findViewById(R.id.toolbar_inc);
-        switchDone = (Switch) findViewById(R.id.switch_done_filter);
+            setSupportActionBar(tb);
 
-        setSupportActionBar(tb);
+            // Get the ActionBar here to configure the way it behaves.
+            final ActionBar ab = getSupportActionBar();
 
-        // Get the ActionBar here to configure the way it behaves.
-        final ActionBar ab = getSupportActionBar();
+            ab.setDisplayShowCustomEnabled(true); // enable overriding the default toolbar layout
+            ab.setDisplayShowTitleEnabled(false); // disable the default title element here (for centered title)
 
-        ab.setDisplayShowCustomEnabled(true); // enable overriding the default toolbar layout
-        ab.setDisplayShowTitleEnabled(false); // disable the default title element here (for centered title)
+            switchDone.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
-        switchDone.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView,
+                                             boolean isChecked) {
+                    SharedPreferences.Editor editor = sharedpreferences.edit();
+                    editor.putString(FILTER_DONE, String.valueOf(switchDone.isChecked()));
+                    editor.commit();
+                    updateList();
+                }
+            });
 
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView,
-                                         boolean isChecked) {
-                SharedPreferences.Editor editor = sharedpreferences.edit();
-                editor.putString(FILTER_DONE, String.valueOf(switchDone.isChecked()));
-                editor.commit();
-                updateList();
-            }
-        });
+            //Data.loadData();
+            updateList();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
 
-        //Data.loadData();
-        updateList();
     }
 
     @Override
@@ -174,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
         diaBox.show();
     }
 
-    private void editNote(int id){
+    private void editNote(long id){
         Intent i = new Intent(this, EditActivity.class);
         i.putExtra("id", id);
         startActivityForResult(i, 0);
@@ -182,14 +188,15 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateList(){
 
-        Context ctx = getApplicationContext();
-        Notes_DB notes_db = new Notes_DB(ctx);
-        ArrayList<Note> notes = new ArrayList<>();
-
         String testSwitched = sharedpreferences.getString(FILTER_DONE, null);
         switchDone.setChecked(Boolean.parseBoolean(testSwitched));
         switchNum = sharedpreferences.getInt(ORDER_NUM,0);
         orderWay = sharedpreferences.getInt(ORDER_WAY,0);
+        List<Note> notes;
+
+        /*
+        Context ctx = getApplicationContext();
+        Notes_DB notes_db = new Notes_DB(ctx);
         Cursor c = notes_db.getNotes(switchNum, orderWay);
         if(switchDone.isChecked()){
             if (c != null) {
@@ -210,6 +217,8 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         notes_db.close();
+        */
+        notes = Note.listAll(Note.class);
 
         listView = (ListView) findViewById(R.id.listNotes);
         NotesAdapter adapter = new NotesAdapter(this,R.layout.list_item_note,notes);

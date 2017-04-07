@@ -1,4 +1,4 @@
-package xdx.fim.uhk.cz.todo_list;
+package cz.xdx11.todo_list;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

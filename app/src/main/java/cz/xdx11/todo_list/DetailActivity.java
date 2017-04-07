@@ -1,4 +1,4 @@
-package xdx.fim.uhk.cz.todo_list;
+package cz.xdx11.todo_list;
 
 import android.app.Activity;
 import android.content.Context;
@@ -18,6 +18,8 @@ import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import xdx.fim.uhk.cz.todo_list.R;
 
 public class DetailActivity extends AppCompatActivity {
 
