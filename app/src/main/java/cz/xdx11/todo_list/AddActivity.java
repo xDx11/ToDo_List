@@ -28,7 +28,6 @@ public class AddActivity extends AppCompatActivity {
     private ImageView setDateBtn;
     private long endDate = 0;
     private DatePickerDialog datePickDiag;
-    private MenuItem menuItem_Save;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +37,10 @@ public class AddActivity extends AppCompatActivity {
         Toolbar tb = (Toolbar) findViewById(R.id.toolbar_inc);
         setSupportActionBar(tb);
         final ActionBar ab = getSupportActionBar();
-        ab.setDisplayHomeAsUpEnabled(true);
+        if(ab!=null)
+            ab.setDisplayHomeAsUpEnabled(true);
+
+
 
         dateView = (TextView) findViewById(R.id.get_date_time);
         String date = Utils.getFormattedDate(Utils.DEFAULT, new Date());
@@ -69,6 +71,7 @@ public class AddActivity extends AppCompatActivity {
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                 Calendar newDate = Calendar.getInstance();
                 newDate.set(year, monthOfYear, dayOfMonth);
+                System.out.println("TEST ADD MONTH: " + monthOfYear);
                 dateView.setText(Utils.getFormattedDate(Utils.DEFAULT, newDate.getTime()));
                 endDate = newDate.getTime().getTime();
                 setDateBtn.setPressed(false);
@@ -76,13 +79,24 @@ public class AddActivity extends AppCompatActivity {
 
         },newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
 
+        int day = getIntent().getIntExtra("day", 0);
+        int month = getIntent().getIntExtra("month", -1);
+        int year = getIntent().getIntExtra("year", 0);
+        if(day > 0 && month > -1 && year > 0){
+            Calendar newDate = Calendar.getInstance();
+            newDate.set(year, month, day);
+            dateView.setText(Utils.getFormattedDate(Utils.DEFAULT, newDate.getTime()));
+            datePickDiag.updateDate(year, month, day);
+            newDate.set(year, month, day);
+            endDate = newDate.getTimeInMillis();
+            System.out.println("TEST ADD MONTH intExtra: " + newDate.getTime().getMonth());
+        }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.add_menu, menu);
-        menuItem_Save = menu.findItem(R.id.action_add);
         return true;
     }
 
@@ -131,9 +145,10 @@ public class AddActivity extends AppCompatActivity {
         long id = note.save();
 
         if (id > -1) {
-            Intent i = new Intent(this, MainActivity.class);
-            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivityForResult(i, 0);
+            Intent returnIntent = new Intent();
+            returnIntent.putExtra("id", id);
+            returnIntent.putExtra("date", endDate);
+            setResult(Activity.RESULT_OK, returnIntent);
             finish();
         }else{
             Toast.makeText(this, R.string.note_not_added, Toast.LENGTH_LONG).show();

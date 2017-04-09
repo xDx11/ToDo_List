@@ -3,24 +3,6 @@
 
     <item
         is-multidex="false"
-        jar="C:\Android_APP\ToDo_List\ToDo_List\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.2"
-        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
-        <dex dex="C:\Android_APP\ToDo_List\ToDo_List\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-23.1.1_61170fe40b8ba0c7461d2ee87c797fa6940b4fe0.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Android_APP\ToDo_List\ToDo_List\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.2"
-        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
-        <dex dex="C:\Android_APP\ToDo_List\ToDo_List\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-23.1.1_40426adce5d1b0b11f41019d741b0fc0edab487e.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="C:\Program Files\Android\Android Studio\gradle\m2repository\com\google\guava\guava\18.0\guava-18.0.jar"
         jumboMode="false"
         optimize="true"
@@ -30,21 +12,57 @@
     </item>
     <item
         is-multidex="false"
-        jar="C:\Android\Sdk\sdk\extras\android\m2repository\com\android\support\support-annotations\23.1.1\support-annotations-23.1.1.jar"
+        jar="C:\Android_APP\ToDo_List\ToDo_List\app\build\intermediates\exploded-aar\com.roomorama\caldroid\3.0.1\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="23.0.2"
-        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
-        <dex dex="C:\Android_APP\ToDo_List\ToDo_List\app\build\intermediates\pre-dexed\debug\support-annotations-23.1.1_d06d44b674226ad37b1301f2a5c3cc16a2b671f1.jar" />
+        sha1="fea01abd91186a7148aaaf8c517b823eedaac79a">
+        <dex dex="C:\Android_APP\ToDo_List\ToDo_List\app\build\intermediates\pre-dexed\debug\com.roomorama-caldroid-3.0.1_c3fc3dcd2d70409d1bff1207be9540945ef3b7af.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Android_APP\ToDo_List\ToDo_List\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\libs\internal_impl-23.1.1.jar"
+        jar="C:\Android\Sdk\sdk\extras\android\m2repository\com\android\support\support-annotations\23.4.0\support-annotations-23.4.0.jar"
         jumboMode="false"
         optimize="true"
         revision="23.0.2"
-        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
-        <dex dex="C:\Android_APP\ToDo_List\ToDo_List\app\build\intermediates\pre-dexed\debug\internal_impl-23.1.1_cafd729fd36b932795000406f583ba240f53dbb2.jar" />
+        sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
+        <dex dex="C:\Android_APP\ToDo_List\ToDo_List\app\build\intermediates\pre-dexed\debug\support-annotations-23.4.0_446bc6e19ab4cedc40bc0046e70db05403c10818.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Android_APP\ToDo_List\ToDo_List\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
+        <dex dex="C:\Android_APP\ToDo_List\ToDo_List\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-23.4.0_c0b88d2ba8dbc089b155009adb3c119c8a33dc39.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Android_APP\ToDo_List\ToDo_List\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.4.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
+        <dex dex="C:\Android_APP\ToDo_List\ToDo_List\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-23.4.0_4e28bff77bba6585efea351b576d75359355e596.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Prdík\.gradle\caches\modules-2\files-2.1\com.darwinsys\hirondelle-date4j\1.5.1\7b52de513f87ae4d9ff5d17518def0a1e9bc3df0\hirondelle-date4j-1.5.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="7b52de513f87ae4d9ff5d17518def0a1e9bc3df0">
+        <dex dex="C:\Android_APP\ToDo_List\ToDo_List\app\build\intermediates\pre-dexed\debug\hirondelle-date4j-1.5.1_c42c1dfa16415174af82af35706687b9bd1e0d4e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Android_APP\ToDo_List\ToDo_List\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\libs\internal_impl-23.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
+        <dex dex="C:\Android_APP\ToDo_List\ToDo_List\app\build\intermediates\pre-dexed\debug\internal_impl-23.4.0_226f5390815a65f6611238bbecf9b6f5ec3c186a.jar" />
     </item>
     <item
         is-multidex="false"
@@ -54,6 +72,24 @@
         revision="23.0.2"
         sha1="ac045b53684345f4ec8468477e8fc5034d0d2bfd">
         <dex dex="C:\Android_APP\ToDo_List\ToDo_List\app\build\intermediates\pre-dexed\debug\com.github.satyan-sugar-1.4_15058558adc0f321c8a0c361b8739db0b955a651.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Android_APP\ToDo_List\ToDo_List\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.4.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
+        <dex dex="C:\Android_APP\ToDo_List\ToDo_List\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-23.4.0_5173598bae411f5641fa8e6921753e3bce037b25.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Android_APP\ToDo_List\ToDo_List\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.4.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
+        <dex dex="C:\Android_APP\ToDo_List\ToDo_List\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-23.4.0_1de44a01d3d559df32728a79e27303d9b68eeee1.jar" />
     </item>
 
 </items>

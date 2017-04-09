@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_note_list"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context="cz.xdx11.todo_list.NoteListActivity">
+
+    <include layout="@layout/toolbar"
+        android:id="@+id/toolbar_inc" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/listNotesPerDay"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:divider="@color/colorAccent"
+        android:dividerHeight="2px"
+        android:layout_below="@+id/toolbar_inc" />
+
+    <TextView
+        android:text=""
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewNoNotes"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/colorLightGreyPressed"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_centerInParent="false" />
+
+    <ImageButton
+        android:background="@drawable/button_round"
+        android:id="@+id/imageButtonBack"
+        android:layout_width="70dp"
+        android:onClick="onAddNoteClicked"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp"
+        />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="70dp"
+        android:onClick="onAddNoteClicked"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp"
+        android:src="@drawable/sel_btn_add"
+        android:background="@null"
+
+        />
+
+
+</RelativeLayout>

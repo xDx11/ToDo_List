@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_callendar"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="cz.xdx11.todo_list.CallendarActivity">
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar_inc"
+        android:paddingStart="2dp"
+        android:paddingEnd="2dp"
+
+        >
+
+    </FrameLayout>
+
+    <include layout="@layout/toolbar"
+        android:id="@+id/toolbar_inc" />
+
+
+
+
+</RelativeLayout>

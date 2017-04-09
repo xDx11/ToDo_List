@@ -8,6 +8,7 @@
     <color name="colorWhite">#ffffff</color>
     <color name="colorLightGreyPressed">#8c8c8c</color>
     <color name="colorBlack">#000000</color>
+    <color name="backgroundCellGreen">#13a200</color>
     <color name="lightGreen">#f1fff1</color>
     <color name="lightRed">#fdefef</color>
     <color name="darkRed">#8b0009</color>

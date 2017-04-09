@@ -6,10 +6,21 @@
     android:layout_height="match_parent"
     android:theme="@style/SCBSwitch"
     android:background="@color/colorBack"
-    tools:context="xdx.fim.uhk.cz.todo_list.cz.xdx11.todo_list.MainActivity">
+    tools:context="cz.xdx11.todo_list.MainActivity">
+
+
 
     <include layout="@layout/toolbar"
         android:id="@+id/toolbar_inc" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/frameLayoutMain"
+        android:layout_below="@+id/toolbar_inc"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp">
+    </FrameLayout>
 
     <ListView
         android:layout_width="wrap_content"
@@ -62,6 +73,35 @@
         android:layout_alignEnd="@+id/imageButton"
         android:layout_marginEnd="50dp"
         android:layout_marginBottom="13dp" />
+
+
+    <ImageButton
+        android:background="@drawable/button_round"
+        android:id="@+id/imageButtonChangeStyleBack"
+        android:layout_width="70dp"
+        android:onClick="onChangeStyle"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginBottom="15dp"
+        />
+
+    <ImageButton
+        android:id="@+id/imageButtonChangeStyle"
+        android:layout_width="70dp"
+        android:onClick="onChangeStyle"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginBottom="15dp"
+        android:src="@drawable/sel_btn_change_style"
+        android:background="@null"
+
+        />
 
 
 </RelativeLayout>
